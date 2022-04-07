@@ -1,0 +1,89 @@
+---
+title: "Project 2"
+author: "SID1 SID2 SID3 SI4 SID5"
+subtitle: "Subject Matter"
+date: "University of Sydney | Day Month 2021"
+output:
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    self_contained: yes
+    theme: flatly
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    code_folding: hide
+---
+
+<br>
+
+# Executive Summary
+
+<br>
+
+# Full Report
+
+## Initial Data Analysis (IDA)
+
+```{r, eval = T}
+# Read in your survey data
+library(tidyverse)
+library(dplyr)
+survey = read.csv("sleep.csv")
+head(survey, 5)
+```
+cleaning data:
+```{r,eval= T}
+#quick overview of all data types and variables
+survey = read.csv("sleep.csv")
+data = survey
+names = colnames(data)
+simple_version = c("time","light_on_off","hours_sleep","wake_up_night","Screen_light","typelight","fall_aspleep","sleep_satis")
+colnames(data) = simple_version
+str(data)
+filter(data,typelight=="Warm white (2000 - 3000 K)")
+
+```
+
+## Research Question(s)
+```{r,eval=T}
+
+ggplot(data, aes(y=typelight, x=fall_aspleep, fill=Screen_light)) + geom_boxplot() + xlab("sleep time") + scale_fill_brewer(palette="BuGn") + ggtitle("s")
+
+```
+
+<br>
+```{r}
+c = ggplot(data, aes(hours_sleep,fall_aspleep))
+c+geom_point()
+```
+```{r}
+cor(data$hours_sleep,data$fall_aspleep)
+```
+```{r}
+L =lm(data$fall_aspleep~data$hours_sleep)
+L$coefficients
+summary(L)
+```
+```{r}
+c+geom_point()+geom_abline(intercept = -24.373,slope= 6.435,colour="red")
+```
+```{r}
+res = L$residuals
+ggplot(data,aes(hours_sleep,fall_aspleep))+geom_point()+geom_hline(yintercept = 0,colour="red")
+```
+
+## Articles
+
+<br>
+
+## References
+Use APA
+
+<br>
+
+## Acknowledgments
+When did you team meet (date and time), and what did each team member contribute?
+
+
+
