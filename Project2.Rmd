@@ -20,7 +20,8 @@ output:
 <br>
 
 # Executive Summary
-
+- The aim of this report is to investigate how does light exposure affects sleep.
+- The main discoveries are that most people are used to sleeping with the lights off, half of the individuals do not wake up even once during sleeping and be exposed warm light before sleep.
 <br>
 
 # Full Report
