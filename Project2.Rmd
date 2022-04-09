@@ -124,6 +124,8 @@ ggplot(data,aes(hours_sleep,fall_aspleep))+geom_point()+geom_hline(yintercept = 
 
 ## References
 Use APA
+Harvard Health. (2020). _Blue light has a dark side._ Retrieved from https://www.health.harvard.edu/staying-healthy/blue-light-has-a-dark-side
+Cleveland Clinic. (2020). _Why Light at Night Can Interfere With Your Sleep_ Retrieved from https://health.clevelandclinic.org/light-night-can-interfere-sleep/
 
 <br>
 
