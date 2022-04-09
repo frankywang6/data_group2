@@ -1,0 +1,112 @@
+---
+title: "Project 2"
+author: "Jiaxing Wang Li Qin SID3 SI4 SID5"
+subtitle: "Subject Matter"
+date: "University of Sydney | Day Month 2021"
+output:
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    self_contained: yes
+    theme: flatly
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    code_folding: hide
+---
+
+<br>
+
+# Executive Summary
+
+<br>
+
+# Full Report
+Sources:
+All the data for this project was obtained from an online google survey conducted from 30th of March to 9th of April.
+
+Limitations:
+The data we collected in the survey is valid, however, there are many limitations. For instance, some person cannot figure out the accurate time they sleep every night. Since the sleep quality can be affected by many other factors with people's personal health condition like insomnia, light exposure isn't the only one cause for uninterrupted sleep. 
+In addition, most of individuals attend for our investigation are Grade 1 students in USYD so that it might include selection bias with the students. The outcomes of sample research cannot be generalised for all ages.
+## Initial Data Analysis (IDA)
+
+```{r, eval = T}
+# Read in your survey data
+library(tidyverse)
+library(dplyr)
+survey = read.csv("sleep.csv")
+head(survey, 5)
+```
+cleaning data:
+```{r,eval= T}
+#quick overview of all data types and variables
+survey = read.csv("sleep.csv")
+data = survey
+names = colnames(data)
+simple_version = c("time","light_on_off","hours_sleep","wake_up_night","Screen_light","typelight","fall_aspleep","sleep_satis")
+colnames(data) = simple_version
+data$Screen_light <- c("less than 0.5 hour","from 0.5 hour to 1 hour", "from 1 hours to 1.5 hours",
+               "from 1.5 hours to 2 hours", "from 2 hours to 2.5 hours","from 2.5 hours to 3 hours")
+str(data)
+filter(data,typelight=="Warm white (2000 - 3000 K)")
+
+```
+Data structure:
+1. Each row represents an individual responses, with 56 recorded.
+2. Each column represents a survey question which contains 3 numerical variables(such as hours_sleep, fall_aspleep) and 4 categorical variables(e.g. wake_up_night,typelight). 
+3. Our results demonstrated that how light exposure during light would have an effect on interrupted sleep from several questions linked to the sleep quality.
+
+## Research Question(s)
+```{r,eval=T}
+
+ggplot(data, aes(y=typelight, x=fall_aspleep, fill=Screen_light)) + geom_boxplot() + xlab("sleep time") + scale_fill_brewer(palette="BuGn") + ggtitle("s")
+
+```
+
+<br>
+```{r}
+library(ggplot2)
+ggplot(data,aes(x=light_on_off, y=hours_sleep )) + geom_boxplot(outlier.colour = "green", outlier.size = 3) + xlab("With light on or not") + ylab("Hours of sleep") + ggtitle("Light affect sleep hours")
+```
+
+<br>
+```{r}
+p1 = ggplot(data, aes(x = fall_aspleep))
+p1+geom_histogram(aes(fill = wake_up_night))
+```
+
+```{r}
+library(ggplot2)
+c = ggplot(data, aes(hours_sleep,fall_aspleep))
+c+geom_point()
+```
+```{r}
+cor(data$hours_sleep,data$fall_aspleep)
+```
+```{r}
+L =lm(data$fall_aspleep~data$hours_sleep)
+L$coefficients
+summary(L)
+```
+```{r}
+c+geom_point()+geom_abline(intercept = -24.373,slope= 6.435,colour="red")+geom_smooth(method = "lm") +ggtitle("Relationship between hours of sleep and time to fall asleep")
+```
+```{r}
+res = L$residuals
+ggplot(data,aes(hours_sleep,fall_aspleep))+geom_point()+geom_hline(yintercept = 30,colour="red")
+```
+
+## Articles
+
+<br>
+
+## References
+Use APA
+
+<br>
+
+## Acknowledgments
+When did you team meet (date and time), and what did each team member contribute?
+
+
+
