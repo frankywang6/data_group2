@@ -36,7 +36,7 @@ In addition, most of individuals attend for our investigation are Grade 1 studen
 
 ## Initial Data Analysis (IDA)
 
-```{r, eval = F}
+```{r, eval = T}
 # Read in your survey data
 library(tidyverse)
 library(dplyr)
