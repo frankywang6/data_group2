@@ -118,6 +118,11 @@ ggplot(data,aes(hours_sleep,fall_aspleep))+geom_point()+geom_hline(yintercept = 
 
 ```
 
+```{r}
+ggplot(data,aes(x=sleep_satis))+geom_bar()+scale_y_continuous(limits = c(0, 10), breaks = c(0, 2, 4,6, 8, 10))+ ggtitle("People's sleep satisfaction  ")
+```
+
+
 ## Articles
 
 <br>
